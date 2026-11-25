@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loading...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #bait {
+      text-align: center;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: white;
+    }
+    #scare-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+    }
+    #scare-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="bait">
+    <h2>Verification Required</h2>
+    <p>Click below to continue to the content.</p>
+    <button onclick="triggerScare()">Continue</button>
+  </div>
+
+  <div id="scare-container">
+    <img src="scare.jpg" alt="">
+  </div>
+
+  <audio id="scare-audio" src="scream.mp3"></audio>
+
+  <script>
+    function triggerScare() {
+      document.getElementById('bait').style.display = 'none';
+      document.getElementById('scare-container').style.display = 'block';
+      var audio = document.getElementById('scare-audio');
+      audio.volume = 1.0;
+      audio.play();
+    }
+  </script>
+
+</body>
+</html>
+
