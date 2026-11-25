@@ -52,18 +52,46 @@
   </div>
 
   <div id="scare-container">
-    <img src="scare.jpg" alt="">
+    <img id="scare-img" src="scare1.jpg" alt="">
   </div>
 
-  <audio id="scare-audio" src="scream.mp3"></audio>
+  <audio id="audio1" src="scream.mp3"></audio>
+  <audio id="audio2" src="scream2.mp3" loop></audio>
 
   <script>
+    const images = [
+      'scare1.jpg',
+      'scare2.jpg',
+      'scare3.jpg',
+      'scare4.jpg',
+      'scare5.jpg'
+    ];
+    
+    let currentIndex = 0;
+
     function triggerScare() {
       document.getElementById('bait').style.display = 'none';
       document.getElementById('scare-container').style.display = 'block';
-      var audio = document.getElementById('scare-audio');
-      audio.volume = 1.0;
-      audio.play();
+      
+      const audio1 = document.getElementById('audio1');
+      const audio2 = document.getElementById('audio2');
+      
+      audio1.volume = 1.0;
+      audio2.volume = 1.0;
+
+      // Start second audio when first audio ends
+      audio1.addEventListener('ended', () => {
+        audio2.play();
+      });
+
+      audio1.play();
+
+      // Cycle through all 5 images every 80 milliseconds
+      const imgElement = document.getElementById('scare-img');
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        imgElement.src = images[currentIndex];
+      }, 80); 
     }
   </script>
 
